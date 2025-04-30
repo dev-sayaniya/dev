@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            text-align: center;
+        }
+        h2 {
+            background-color: darkgreen;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        from-header p{
+            color:lightgreen;
+            padding: 10px;
+            font-size:14px;
+            margin:0px
+
+
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .error {
+            color: red;
+        }
+        .success {
+            color: green;
+        }
+        button {
+            background: hotpink;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background: #ff6699;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Attendance Registration</h2>
+       <p><b>  Register Your Device for Attendance</b></p>
+        
+
+        <form method="POST" action="">
+            <label>Student Name:</label>
+            <input type="text" name="student_name" placeholder="Enter student name" required>
+
+            <label>Enrollment Number:</label>
+            <input type="text" name="enrollment_number" placeholder="Enter enrollment number" required>
+
+            <label>MAC Address:</label>
+            <input type="text" name="mac_address" placeholder="Enter MAC address (e.g., 00:11:22:33:44:55)" required>
+
+            <button onclick="document.location='go to another page'" class="btn-register"  >Register </a></button> 
+
+        </form>
+
+            
+        </form>
+
+        <p>Already registered? <a href="login.html">Login</a></p>
+    </div>
+        
+</body>
+</html>

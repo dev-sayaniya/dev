@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Attendance Login</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 350px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .container .header {
+      background-color: #a3f7a3;
+      border-radius: 8px 8px 0 0;
+      padding: 15px 10px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .container form {
+      margin: 20px 0;
+    }
+
+    .container label {
+      font-size: 14px;
+      color: #555;
+      display: block;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .container input[type="text"] {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      margin-bottom: 15px;
+      font-size: 14px;
+    }
+
+    .container button {
+      width: 100%;
+      padding: 10px;
+      background-color: #ff7eb9;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .container button:hover {
+      background-color: #ff5098;
+    }
+
+    .container a {
+      color: #27ae60;
+      text-decoration: none;
+      font-size: 14px;
+      margin-top: 10px;
+      display: block;
+    }
+
+    .container a:hover {
+      text-decoration: underline;
+    }
+
+    .container .register-link {
+      margin-top: 15px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Attendance Login</div>
+    <p>Login using your MAC address</p>
+    <form>
+      <label for="mac-address">MAC Address:</label>
+      <input type="text" id="mac-address" name="mac-address" placeholder="e.g., 00:11:22:33:44">
+      <button type="submit" >Login</button>
+      <a href="./main.html"></a>
+      
+    </form>
+    <a href="">Forgot MAC address? </a>
+    <a href="./register.html" class="./register-link">Registration?</a>
+
+  </div>
+</body>
+</html>

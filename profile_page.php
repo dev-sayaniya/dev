@@ -1,0 +1,149 @@
+<?php
+$servername = "localhost";
+$username = "root"; // change if you have a different username
+$password = ""; // change if you have a password
+$dbname = "attendance_db"; // change to your DB name
+
+$mac = $_GET['mac'];
+
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$sql = "SELECT name, enrollment_number FROM student_name WHERE mac_address = ?";
+$stmt = $conn->prepare($sql);
+$stmt->bind_param("s", $mac);
+$stmt->execute();
+$result = $stmt->get_result();
+
+if ($result->num_rows > 0) {
+    echo json_encode($result->fetch_assoc());
+} else {
+    echo json_encode(["error" => "No user found"]);
+}
+
+$conn->close();
+?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Attendance Tracking System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e7e4e4;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 50%;
+            margin: auto;
+            background: rgb(194, 228, 254);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px 0px #aaa;
+            margin-top: 40px;
+        }
+        .profile-info {
+            text-align: left;
+            margin-top: 20px;
+        }
+        .profile-info p {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+        input {
+            width: 100%;
+            padding: 5px;
+            margin: 5px 0;
+            border: 1px solid #878282;
+            border-radius: 5px;
+        }
+        .navbar {
+            background: #257fd9;
+            padding: 10px;
+            text-align: center;
+        }
+        .navbar a {
+            color: rgb(91, 6, 6);
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+        }
+        .navbar a:hover {
+            background: #0056b3;
+        }
+        .logout-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 15px;
+            background: rgb(64, 160, 250);
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .logout-btn:hover {
+            background: rgb(34, 144, 228);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="navbar">
+        <a href="main.php">Home</a>
+        
+    </div>
+
+    <div class="container">
+        <h2>Welcome</h2>
+        <div class="profile-info">
+            <form method="POST" action=""></form>
+            <label>Student Name:</label>
+            <input type="text" name="student_name" placeholder="Enter student name" required>
+
+            <label>Enrollment Number:</label>
+            <input type="text" name="enrollment_number" placeholder="Enter enrollment number" required>
+
+            <label>MAC Address:</label>
+            <input type="text" name="mac_address" placeholder="Enter MAC address" required>
+            
+           
+        </div>
+        <a href="logout.php" class="logout-btn">Logout</a>
+    </div>
+    <script>
+window.onload = function() {
+    const mac = localStorage.getItem("mac_address"); // or get from URL/query string
+
+    if (!mac) {
+        alert("MAC address not found.");
+        return;
+    }
+
+    fetch(`fetch_profile.php?mac=${mac}`)
+        .then(response => response.json())
+        .then(data => {
+            if (data.error) {
+                alert(data.error);
+            } else {
+                document.querySelector('input[placeholder="Enter student name"]').value = data.name;
+                document.querySelector('input[placeholder="Enter enrollment number"]').value = data.enrollment;
+                document.querySelector('input[placeholder="Enter MAC address"]').value = mac;
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching profile:", error);
+        });
+}
+</script>
+
+</body>
+</html>
+
