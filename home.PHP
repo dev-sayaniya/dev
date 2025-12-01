@@ -16,7 +16,7 @@
         header {
             background-color: #4CAF50;
             color: white;
-            padding: 15px 20px;
+            padding: 5px ;
             text-align: center;
         }
 
@@ -83,7 +83,7 @@
             padding: 15px;
             background-color: #4CAF50;
             color: white;
-            margin-top: 40px;
+            margin-top: 50px;
         }
 
         footer a {
@@ -102,8 +102,8 @@
         <section class="hero">
             <h1>Effortless Attendance Monitoring</h1>
             <p>Using MAC Address technology to simplify attendance tracking for organizations, schools, and workplaces.</p>
-            <a href="./login.html">Login</a>
-            <a href="./register.html">Registration Devices</a>
+            <a href="login.php">Login</a>
+            <a href="register.php">Registration Devices</a>
         </section>
 
         <section class="features">
@@ -128,7 +128,7 @@
     
 
     <footer>
-        <p>&copy; 2025 Attendance Tracking System. All rights reserved. | <a href="contact">Contact Us</a></p>
+        <p>&copy; 2025 Attendance Tracking System. All rights reserved. | Contact Us:- devsayaniya051103@gmail.com</p>
     </footer>
 </body>
 </html>
