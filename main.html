@@ -1,72 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>MyPortfolio</title>
-  <link rel="stylesheet" href="dev_style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-  integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance Tracking System</title>
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styling */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333; 
+             /* background: url(main.jpg);
+            background-repeat: no-repeat;
+            background-size: cover; */
+            
+        }
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; 
+            z-index: -1; 
+        }
+
+        /* Header and Navbar */
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 15px;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .navbar a:hover {
+            background-color: #0056b3;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+        }
+
+        #welcome {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #welcome h1 {
+            font-size: 45px;
+            color: #007BFF;
+        }
+
+        #features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+            color: #007BFF;
+        }
+
+        .feature-card p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px 0;
+            background-color: #007BFF;
+            color: white;
+        }
+    </style>
 </head>
 <body>
+    <video class="video-background" autoplay muted loop>
+    <source src="main.mp4.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video> 
+    <header>
+        <h1>Attendance Tracking System</h1>
+        <nav class="navbar">
+            <ul>
+                <li><a href="./home.php">Home</a></li>
+                <li><a href="./date_sheet_page.php">Attendance sheet</a></li>
+                <li><a href="./profile_page.php">Profile</a></li>
+                <li><a href="./logout.php">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <aside>
-    <div class="img1">
-      <img src="devphoto.jpg" alt="Dev">
-      <h1>Dev Sayaniya</h1>
-      <p>A passionate about web development and love to learn new things in it.</p>
-      <nav>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Contact</a>
-        <a href="#contact">Contact</a>
+    <main>
+        <section id="welcome">
+            <h1>Welcome Back!!!</h1>
+            <h2 style="color:black;">Track attendance seamlessly with our system using MAC address recognition.</h2>
+        </section>
+
+        <section id="features">
+            <div class="feature-card">
+                <h3 button onclick="navigateToPage1()"></button>Attendance logs</h3>
+                <p>View and manage real-time attendance logs of employees.</p>
+            </div>
+            <div class="feature-card">
+                <h3 button onclick="navigateToPage2()"></button>MAC Address Tracking</h3>
+                <p>Ensure accurate tracking with device-specific MAC address recognition.</p>
+            </div>
+            <div class="feature-card">
+                <h3 button onclick="navigateToPage3()"></button>User Management</h3>
+                <p>Manage employee profiles and attendance records with ease.</p>
+                
+
+    <script>
+        function navigateToPage3() {
+            window.location.href = "./management.html"; // Replace with your target URL
+        }
+        function navigateToPage1() {
+            window.location.href = "log.php"; // Replace with your target URL
+        }
+        function navigateToPage2() {
+            window.location.href = "./sheet.html"; 
+        } 
+
+   
+    </script>
+                
+            </div>
+        </section>
+    </main>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         
-      </nav>
-    </div>
-    <footer>&copy; 2025 Dev Sayaniya</footer>
-  </aside>
-
-  <main>
-    <h2>About Me</h2>
-    <br>
-    <h1>Hey!!,it's Dev Sayaniya</h1>
-    <section class="about" id="about">
-       <br>
-       <br>
-      <p>I’m a passionate web developer with a strong interest in building clean, user-friendly,<br> and responsive websites and web applications. I enjoy turning ideas into reality using modern web technologies.<br> With a focus on both frontend and backend development, I aim to create seamless digital experiences that are both functional<br> and visually appealing. I’m always eager to learn new tools, collaborate on innovative projects, and grow in the ever-evolving<br> world of web development.
-        <br>
-        <br>
-        <a href="https://instagram.com/_dev_511._" target="_blank">
-            <i class="fa-brands fa-square-instagram"></i> 
-          </a>
-          <a href="https://facebook.com/Dev Sayaniya" target="_blank" class="icon">    <i class="fa-brands fa-facebook"></i></a>
-          </a> 
-          <i class="fa-brands fa-square-x-twitter"></i>
-          <i class="fa-brands fa-linkedin"></i> 
-        </p>
-    </section>
-
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="project">
-        <h3>My DE Clg Project</h3>
-        <p>I have created a website that helps students in their studies. Students can check their dashboard, where we have included study material and a Q&A section.</p>
-        <a href="../project/index.html">View Project</a>
-      </div>
-      <div class="project">
-        <h3>WP Project</h3>
-        <p>Creating a Apple stactic clone website</p>
-        <a href="../clone/index.html">View Project</a>
-      </div>
-    </section>
-
-    <section id="contact" class="contact">
-      <h2>Contact</h2>
-      <a href="mailto:vp1590489@gmai.com">Email</a>
-      <br>
-      <a href="tel:9328046483">Contact me</a>
-    </section>
-  </main>
-
+    <footer>
+        
+        <p>&copy; 2025 Attendance Tracking System. All rights reserved.</p>
+    </footer>
 </body>
 </html>
