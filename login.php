@@ -1,40 +1,36 @@
 <?php
-session_start();
 
 $host = "localhost";
-$user = "root";  // Change if using a different database user
-$password = "";  // Set your database password if applicable
+$user = "root";
+$password = "";
 $database = "attendance_db";
 
-// Connect to database
 $conn = new mysqli($host, $user, $password, $database);
-
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+
+$login_error = "";
+$student_data = null;
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $mac_address = $_POST['mac_address'];
 
-    // Validate MAC Address input
     if (empty($mac_address)) {
-        $error = "MAC Address is required!";
+        $login_error = "MAC address is required!";
     } else {
-        // Prevent SQL injection
         $mac_address = $conn->real_escape_string($mac_address);
-
-        // Check if MAC Address exists
         $sql = "SELECT * FROM students WHERE mac_address = '$mac_address'";
         $result = $conn->query($sql);
 
-        
+        if ($result && $result->num_rows == 1) {
+            $student_data = $result->fetch_assoc();
+            header("Location: main.php");
 
-        if ($result->num_rows > 0) {
-            $_SESSION['mac_address'] = $mac_address;
-            header("Location: main.html"); // Redirect to the dashboard
-            exit();
+            exit;
         } else {
-            $error = "Invalid MAC Address!";
+            $login_error = "MAC address not found. Please register first.";
         }
     }
 }
@@ -43,27 +39,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Attendance Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f9f9f9;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-    }
-
-    .container {
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      width: 350px;
-      text-align: center;
-      padding: 20px;
+    <meta charset="UTF-8">
+    <title>Attendance Login</title>
+    <style>
+      body{
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            opacity: 0.95;
+            background: url(login.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+          }
+          .container {
+          background-color: rgb(253, 254, 255);
+          border-radius: 8px;
+          box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+          width: 350px;
+          text-align: center;
+          padding: 25px;
     }
 
     .container .header {
@@ -88,8 +86,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     .container input[type="text"] {
-      width: 100%;
-      padding: 10px;
+      width: 95%;
+      padding: 9px;
       border: 1px solid #ccc;
       border-radius: 4px;
       margin-bottom: 15px;
@@ -122,26 +120,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     .container a:hover {
       text-decoration: underline;
     }
+         h2 {
+            color: darkblue;
+        }
+        input, button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .container .register-link {
+        margin-top: 15px;
+        }
 
-    .container .register-link {
-      margin-top: 15px;
-    }
-  </style>
+    </style>
 </head>
 <body>
-  <div class="container">
+   <div class="container">
     <div class="header">Attendance Login</div>
     <p>Login using your MAC address</p>
-    <form>
+    <?php if (!empty($login_error)) echo "<p class='error'>$login_error</p>"; ?>
+    <form method="POST" action="">
       <label for="mac-address">MAC Address:</label>
-      <input type="text" id="mac-address" name="mac-address" placeholder="e.g., 00:11:22:33:44">
-      <button type="submit" >Login</button>
-      <a href="./main.html"></a>
-      
+      <input type="text" name="mac_address" placeholder="Enter MAC Address" required>
+      <button type="submit">Login</button>
     </form>
-    <a href="">Forgot MAC address? </a>
-    <a href="./register.html" class="./register-link">Registration?</a>
+  <a href="">Forgot MAC address? </a>
+  <a href="register.php" class="./register-link">Register New Device</a>
+</div>
 
-  </div>
 </body>
 </html>
